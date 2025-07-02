@@ -1,24 +1,15 @@
-# README
+# Contacts app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Port
 
-Things you may want to cover:
+`18500`
 
-* Ruby version
+## Initialization 
 
-* System dependencies
+```shell
+rails new contacts --no-rc --database postgresql --javascript importmap \
+  --css tailwind --skip-test --skip-system-test \
+  --skip-solid --skip-cache
+```
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+I followed [this guide](https://inertia-rails.dev/guide/server-side-setup) to setup Inertia Rails (for when we just have to have React 🤷🏾‍♂️).
