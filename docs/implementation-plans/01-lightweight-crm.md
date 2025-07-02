@@ -32,6 +32,44 @@ This document outlines the implementation plan for a lightweight CRM system to m
 
 - IdentitiesDonors (identity_id, identity_type, donor_id, is_primary, created_at, updated_at)
 
+### Model Scaffolding Order
+
+The following order should be followed when scaffolding the models to ensure all dependencies are satisfied:
+
+1. **Regions**
+   - Independent model
+   - Required by Address model
+
+2. **Contact & Org** (can be created in parallel)
+   - Base models that implement `hireable` and `reachable` interfaces
+   - Core entities for the system
+
+3. **ContactInfo**
+   - Depends on `reachable` interface (Contact/Org)
+   - Uses polymorphic association with `reachable_id` and `reachable_type`
+
+4. **Address**
+   - Depends on `reachable` interface and Regions
+   - Uses polymorphic association with `reachable_id` and `reachable_type`
+   - References `region_id` from Regions
+
+5. **EmploymentRecord**
+   - Depends on `hireable` interface
+   - Uses polymorphic association with `hireable_id` and `hireable_type`
+   - References `employer_id` (from Contact/Org)
+
+6. **Donor**
+   - Independent model
+   - No dependencies on other models
+
+7. **Donation**
+   - Depends on Donor
+   - References `donor_id`
+
+8. **IdentitiesDonors**
+   - Junction table between identities (Contact/Org) and Donors
+   - Should be created last as it depends on both identity and donor models
+
 #### Merging Logic
 
 - Identify potential duplicates based on name, email, phone
