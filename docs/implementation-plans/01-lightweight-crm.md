@@ -54,8 +54,8 @@ The system will focus on maintaining accurate contact information and linking it
 - Org `hireable`, `identifyable`, `notable` & `reachable` (id, name, email, phone, created_at, updated_at)
 - ContactInfo (id, reachable_id,reachable_type, type [EmailAddress/PhoneNumber], value, is_primary, created_at, updated_at)
 - EmploymentRecord (id, hireable_id, hireable_type, employer_id, occupation, is_current, start_date, end_date)
-- Address (id, google_place_id, street_line_1, street_line_2, locale, region_id, postal_code)
-- ReachableAddress (id, reachable_id, reachable_type, address_id, is_primary, type [HomeAddress/WorkAddress/OtherAddress])
+- Address `notable` (id, google_place_id, street_line_1, street_line_2, locale, region_id, postal_code)
+- ReachableAddress `notable` (id, reachable_id, reachable_type, address_id, is_primary, type [HomeAddress/WorkAddress/OtherAddress])
 - Regions (id, name, display_name, alpha2_code_iso3166, numeric_code_iso3166, created_at, updated_at)
 - Notes (id, notable_id, notable_type, created_at, updated_at)
 
