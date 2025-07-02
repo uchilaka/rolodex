@@ -20,7 +20,8 @@ This document outlines the implementation plan for a lightweight CRM system to m
 - Org `hireable`, `identifyable` & `reachable` (id, name, email, phone, created_at, updated_at)
 - ContactInfo (id, reachable_id,reachable_type, type [EmailAddress/PhoneNumber], value, is_primary, created_at, updated_at)
 - EmploymentRecord (id, hireable_id, hireable_type, employer_id, occupation, is_current, start_date, end_date)
-- Address (id, reachable_id, reachable_type, street_line_1, street_line_2, locale, region, postal_code, country, is_primary, type [HomeAddress/WorkAddress/OtherAddress])
+- Address (id, reachable_id, reachable_type, street_line_1, street_line_2, locale, region_id, postal_code, is_primary, type [HomeAddress/WorkAddress/OtherAddress])
+- Regions (id, name, alpha2_code_iso3166, numeric_code_iso3166, created_at, updated_at)
 
 #### 2. Donor Integration
 
