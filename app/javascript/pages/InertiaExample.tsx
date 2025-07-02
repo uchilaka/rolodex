@@ -23,16 +23,16 @@ export default function InertiaExample({ name }: { name: string }) {
           </a>
           <a href="https://vite-ruby.netlify.app" target="_blank">
             <img
-              className={`${cs.logo} ${cs.vite}`}
-              src={viteRubySvg}
-              alt="Vite Ruby logo"
+                className={`${cs.logo} ${cs.vite}`}
+                src={viteRubySvg}
+                alt="Vite Ruby logo"
             />
           </a>
           <a href="https://react.dev" target="_blank">
             <img
-              className={`${cs.logo} ${cs.react}`}
-              src={reactSvg}
-              alt="React logo"
+                className={`${cs.logo} ${cs.react}`}
+                src={reactSvg}
+                alt="React logo"
             />
           </a>
         </div>
@@ -41,8 +41,8 @@ export default function InertiaExample({ name }: { name: string }) {
 
         <div className="card">
           <button
-            className={cs.button}
-            onClick={() => setCount((count) => count + 1)}
+              className={cs.button}
+              onClick={() => setCount((count) => count + 1)}
           >
             count is {count}
           </button>

@@ -39,6 +39,7 @@ createInertiaApp({
 
   setup({ el, App, props }) {
     if (el) {
+      el.classList.add('mx-auto')
       createRoot(el).render(createElement(App, props))
     } else {
       console.error(
