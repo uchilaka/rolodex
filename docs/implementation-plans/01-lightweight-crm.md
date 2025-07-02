@@ -2,7 +2,9 @@
 
 ## Overview
 
-This document outlines the implementation plan for a lightweight CRM system to manage contact records for a donation platform. The system will focus on maintaining accurate contact information and linking it to donor records.
+This document outlines the implementation plan for a lightweight CRM system to manage contact records for a donation platform.
+
+The system will focus on maintaining accurate contact information and linking it to donor records.
 
 ## Core Features
 
