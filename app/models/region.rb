@@ -3,9 +3,9 @@
 # Table name: regions
 #
 #  id                   :uuid             not null, primary key
-#  alpha2_code_iso3166  :string           not null
+#  alpha2_code_iso3166  :string
 #  display_name         :string
-#  name                 :string           not null
+#  name                 :string
 #  numeric_code_iso3166 :string
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
@@ -13,11 +13,15 @@
 # Indexes
 #
 #  index_regions_on_alpha2_code_iso3166  (alpha2_code_iso3166) UNIQUE
-#  index_regions_on_name                 (name) UNIQUE
 #
 class Region < ApplicationRecord
-  validates :name, presence: true, uniqueness: true
-  validates :alpha2_code_iso3166, presence: true, uniqueness: true
-  validates :numeric_code_iso3166, allow_blank: true, format: { with: /\A\d{3}\z/, message: 'must be a 3-digit number' }
-  validates :display_name, allow_blank: true, length: { maximum: 255 }
+  has_many :notes, as: :notable, dependent: :destroy
+
+  accepts_nested_attributes_for :notes
+
+  validates :name, presence: true
+  validates :display_name, presence: true
+  validates :alpha2_code_iso3166, presence: true, uniqueness: true, length: { is: 2 }
+  validates :numeric_code_iso3166, numericality: { only_integer: true }, allow_blank: true
+  validates :numeric_code_iso3166, allow_blank: true, length: { is: 3 }
 end

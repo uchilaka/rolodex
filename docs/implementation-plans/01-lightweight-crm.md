@@ -50,8 +50,8 @@ The system will focus on maintaining accurate contact information and linking it
 
 ### 1. Contact Management
 
-- Contact `hireable`, `identifyable`, `notable` & `reachable` (id, given_name, family_name, email, phone, created_at, updated_at)
-- Org `hireable`, `identifyable`, `notable` & `reachable` (id, name, email, phone, created_at, updated_at)
+- Contact `hireable`, `identifyable`, `notable` & `reachable` (id, given_name, family_name, created_at, updated_at)
+- Org `hireable`, `identifyable`, `notable` & `reachable` (id, name, display_name, tax_id, email, phone, created_at, updated_at)
 - ContactInfo (id, reachable_id,reachable_type, type [EmailAddress/PhoneNumber], value, is_primary, created_at, updated_at)
 - EmploymentRecord (id, hireable_id, hireable_type, employer_id, occupation, is_current, start_date, end_date)
 - Address `notable` (id, google_place_id, street_line_1, street_line_2, locale, region_id, postal_code)
@@ -76,40 +76,61 @@ The following order should be followed when scaffolding the models to ensure all
     - Independent model
     - Required by Address model
 
-2. [ ] **Contact & Org** (can be created in parallel)
-    - Base models that implement `hireable` and `reachable` interfaces
-    - Core entities for the system
+2. [x] **Notes**
+    - Depends on `notable` interface (Contact/Org/Donor/Donation)
+    - Uses polymorphic association
+    - Attributes: `content` (rich text)
 
-3. [ ] **Address**
+3. [ ] **Contacts**
+    - Base model that implements `hireable`, `identifiable`, `notable` and `reachable` interfaces
+    - Core entity for the system
+    - Attributes: `given_name`, `family_name`
+
+4. [ ] **Orgs**
+    - Base model that implements `hireable`, `identifiable`, `notable` and `reachable` interfaces
+    - Core entity for the system
+    - Attributes: `name`, `display_name`, `tax_id`, `email`, `phone`
+
+5. [ ] **Addresses**
     - Depends on Regions
     - System-owned and immutable
-    - Contains `google_place_id`
+    - Contains `google_place_id`, `street_line_1`, `street_line_2`, `locale`, `postal_code`
+    - Implements `notable` interface
 
-4. [ ] **ReachableAddress**
-    - Depends on both `Address` and `reachable` interface
-    - Handles the polymorphic association
+6. [ ] **ReachableAddress**
+    - Depends on both `Address` and `reachable` interface (Contact/Org)
+    - Handles the polymorphic association with `reachable`
     - Manages address types (Home/Work/Other) and `is_primary`
+    - Implements `notable` interface
 
-5. [ ] **ContactInfo**
+7. [ ] **ContactData**
     - Depends on `reachable` interface (Contact/Org)
     - Uses polymorphic association with `reachable_id` and `reachable_type`
+    - Attributes: `type` (EmailAddress/PhoneNumber), `value`, `is_primary`
 
-6. [ ] **EmploymentRecord**
+8. [ ] **EmploymentRecords**
     - Depends on `hireable` interface (Contact/Org)
     - Requires polymorphic association with `hireable`
-    - Links to employer (which can be an Org)
+    - Links to employer (which is an Org)
+    - Attributes: `occupation`, `is_current`, `start_date`, `end_date`
 
-7. [ ] **Donor**
+9. [ ] **Donors**
     - Independent model
     - Will be linked to Contacts/Orgs through IdentitiesDonors
+    - Implements `notable` interface
+    - Attributes: `external_id`
 
-8. [ ] **Donation**
+10. [ ] **Donations**
     - Depends on Donor
-    - References `donor_id`
+    - Tracks individual donations
+    - Implements `notable` interface
+    - Attributes: `amount`, `currency`, `donation_date`, `campaign_id`, `payment_method`, `status`
 
-9. [ ] **IdentitiesDonors**
-    - Junction table between identities (Contact/Org) and Donors
-    - Should be created last as it depends on both identity and donor models
+11. [ ] **IdentitiesDonors**
+    - Depends on both `identity` (Contact/Org) and `donor`
+    - Establishes many-to-many relationship between identities and donors
+    - Tracks primary identity for each donor
+    - Attributes: `is_primary`
 
 ## Technical Implementation
 

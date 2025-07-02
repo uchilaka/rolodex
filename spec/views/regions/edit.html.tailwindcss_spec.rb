@@ -6,7 +6,8 @@ RSpec.describe "regions/edit", type: :view do
       name: "MyString",
       display_name: "MyString",
       alpha2_code_iso3166: "MyString",
-      numeric_code_iso3166: "MyString"
+      numeric_code_iso3166: "MyString",
+      notes: nil
     )
   }
 
@@ -26,6 +27,8 @@ RSpec.describe "regions/edit", type: :view do
       assert_select "input[name=?]", "region[alpha2_code_iso3166]"
 
       assert_select "input[name=?]", "region[numeric_code_iso3166]"
+
+      assert_select "input[name=?]", "region[notes_id]"
     end
   end
 end
