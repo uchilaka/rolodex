@@ -36,7 +36,7 @@ gem 'globalid', '~> 1.2'
 gem 'interactor', '~> 3.1'
 gem 'money-rails', '~> 1.15'
 gem 'name_of_person', '~> 1.1'
-# gem 'paper_trail', '~> 16'
+gem 'paper_trail', '~> 16'
 gem 'phonelib', '~> 0.10'
 # gem 'pundit', '~> 2.5'
 # gem 'devise', '~> 4.9'
@@ -71,7 +71,7 @@ gem 'kamal', require: false
 gem 'thruster', require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem 'image_processing', '~> 1.2'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -106,4 +106,3 @@ group :test do
   gem 'shoulda-matchers', '~> 6.5'
   gem 'vcr', '~> 6.2'
 end
-
