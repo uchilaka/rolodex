@@ -23,6 +23,9 @@ gem 'tailwindcss-rails'
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
 
+# For when we just have to have React
+gem 'inertia_rails'
+
 gem 'csv', '~> 3.3'
 gem 'simple_form', '~> 5.3'
 gem 'rails_semantic_logger', '~> 4.17'
@@ -86,3 +89,5 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
 end
+
+gem "vite_rails", "~> 3.0"
