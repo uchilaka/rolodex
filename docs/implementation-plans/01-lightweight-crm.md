@@ -49,29 +49,34 @@ The following order should be followed when scaffolding the models to ensure all
    - Base models that implement `hireable` and `reachable` interfaces
    - Core entities for the system
 
-3. [ ] **ContactInfo**
+3. [ ] **Address**
+   - Depends on Regions
+   - System-owned and immutable
+   - Contains `google_place_id`
+
+4. [ ] **ReachableAddress**
+   - Depends on both `Address` and `reachable` interface
+   - Handles the polymorphic association
+   - Manages address types (Home/Work/Other) and `is_primary`
+
+5. [ ] **ContactInfo**
    - Depends on `reachable` interface (Contact/Org)
    - Uses polymorphic association with `reachable_id` and `reachable_type`
 
-4. [ ] **Address**
-   - Depends on `reachable` interface and Regions
-   - Uses polymorphic association with `reachable_id` and `reachable_type`
-   - References `region_id` from Regions
-
-5. [ ] **EmploymentRecord**
+6. [ ] **EmploymentRecord**
    - Depends on `hireable` interface
    - Uses polymorphic association with `hireable_id` and `hireable_type`
    - References `employer_id` (from Contact/Org)
 
-6. [ ] **Donor**
+7. [ ] **Donor**
    - Independent model
    - No dependencies on other models
 
-7. [ ] **Donation**
+8. [ ] **Donation**
    - Depends on Donor
    - References `donor_id`
 
-8. [ ] **IdentitiesDonors**
+9. [ ] **IdentitiesDonors**
    - Junction table between identities (Contact/Org) and Donors
    - Should be created last as it depends on both identity and donor models
 
