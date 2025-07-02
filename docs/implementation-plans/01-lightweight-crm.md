@@ -11,6 +11,10 @@ This document outlines the implementation plan for a lightweight CRM system to m
 - Each contact and organization can have multiple `ContactInfo` records
 - Each contact and organization can have multiple `EmploymentRecord` records
 - Each contact and organization can have multiple `Address` records
+- Each reachable address can be of type `HomeAddress`, `WorkAddress`, or `OtherAddress`
+- Each address is linked to a `Region`
+- Each address is linked to a `GooglePlace` (external)
+- `Address` records are owned and maintained by the system and once created cannot be edited by the user
 
 ### Modeling
 
@@ -20,8 +24,9 @@ This document outlines the implementation plan for a lightweight CRM system to m
 - Org `hireable`, `identifyable` & `reachable` (id, name, email, phone, created_at, updated_at)
 - ContactInfo (id, reachable_id,reachable_type, type [EmailAddress/PhoneNumber], value, is_primary, created_at, updated_at)
 - EmploymentRecord (id, hireable_id, hireable_type, employer_id, occupation, is_current, start_date, end_date)
-- Address (id, reachable_id, reachable_type, street_line_1, street_line_2, locale, region_id, postal_code, is_primary, type [HomeAddress/WorkAddress/OtherAddress])
-- Regions (id, name, alpha2_code_iso3166, numeric_code_iso3166, created_at, updated_at)
+- Address (id, google_place_id, street_line_1, street_line_2, locale, region_id, postal_code)
+- ReachableAddress (id, reachable_id, reachable_type, address_id, is_primary, type [HomeAddress/WorkAddress/OtherAddress])
+- Regions (id, name, display_name, alpha2_code_iso3166, numeric_code_iso3166, created_at, updated_at)
 
 #### 2. Donor Integration
 
@@ -36,37 +41,37 @@ This document outlines the implementation plan for a lightweight CRM system to m
 
 The following order should be followed when scaffolding the models to ensure all dependencies are satisfied:
 
-1. **Regions**
+1. [x] **Regions**
    - Independent model
    - Required by Address model
 
-2. **Contact & Org** (can be created in parallel)
+2. [ ] **Contact & Org** (can be created in parallel)
    - Base models that implement `hireable` and `reachable` interfaces
    - Core entities for the system
 
-3. **ContactInfo**
+3. [ ] **ContactInfo**
    - Depends on `reachable` interface (Contact/Org)
    - Uses polymorphic association with `reachable_id` and `reachable_type`
 
-4. **Address**
+4. [ ] **Address**
    - Depends on `reachable` interface and Regions
    - Uses polymorphic association with `reachable_id` and `reachable_type`
    - References `region_id` from Regions
 
-5. **EmploymentRecord**
+5. [ ] **EmploymentRecord**
    - Depends on `hireable` interface
    - Uses polymorphic association with `hireable_id` and `hireable_type`
    - References `employer_id` (from Contact/Org)
 
-6. **Donor**
+6. [ ] **Donor**
    - Independent model
    - No dependencies on other models
 
-7. **Donation**
+7. [ ] **Donation**
    - Depends on Donor
    - References `donor_id`
 
-8. **IdentitiesDonors**
+8. [ ] **IdentitiesDonors**
    - Junction table between identities (Contact/Org) and Donors
    - Should be created last as it depends on both identity and donor models
 
