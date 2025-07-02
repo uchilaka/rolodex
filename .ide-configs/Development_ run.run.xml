@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Development: run" type="CompoundRunConfigurationType">
+    <toRun name="Development: vite" type="CommandRunConfigurationType" />
+    <toRun name="tailwindcss:watch" type="CommandRunConfigurationType" />
+    <toRun name="Development: contacts" type="RailsRunConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>

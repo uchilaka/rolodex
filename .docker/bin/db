@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+docker exec -it db.rolodex \
+  psql -U ${APP_DATABASE_USER} -d ${APP_DATABASE_NAME} "$@"
