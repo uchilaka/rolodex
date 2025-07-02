@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6cba157-1829-4c2e-8845-672bcd9db34a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/config/initializers/simple_form.rb" afterDir="false" />
-    </list>
+    <list default="true" id="f6cba157-1829-4c2e-8845-672bcd9db34a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,27 +54,7 @@
       <recent name="$PROJECT_DIR$/config/credentials" />
     </key>
   </component>
-  <component name="RunManager" selected="Rails.contacts">
-    <configuration name="contacts" type="RailsRunConfigurationType" factoryName="Rails">
-      <module name="contacts" />
-      <predefined_log_file enabled="true" id="RUBY_RAILS_SERVER" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-      <EXTENSION ID="BundlerRunConfigurationExtension" BUNDLE_MODE="AUTO" bundleExecEnabled="true" />
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" runner="rcov" />
-      <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SCRIPT_ARGS" VALUE="" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="PORT" VALUE="3000" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="IP" VALUE="127.0.0.1" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="DUMMY_APP" VALUE="test/dummy" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RAILS_SERVER_TYPE" VALUE="Default" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ENVIRONMENT_TYPE" VALUE="development" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Rails.Development: contacts">
     <configuration name="spec: contacts" type="RakeRunConfigurationType" factoryName="Rake">
       <module name="contacts" />
       <predefined_log_file enabled="true" id="RUBY_RAKE" />
@@ -120,6 +98,11 @@
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TESTOPTS" VALUE="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Rails.Development: contacts" />
+      <item itemvalue="Rake.spec: contacts" />
+      <item itemvalue="Rake.test: contacts" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -137,7 +120,7 @@
       <option name="presentableId" value="Default" />
       <updated>1751428468312</updated>
       <workItem from="1751428470000" duration="295000" />
-      <workItem from="1751428956706" duration="456000" />
+      <workItem from="1751428956706" duration="534000" />
     </task>
     <servers />
   </component>
