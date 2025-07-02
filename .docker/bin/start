@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+SCRIPT_PATH="${0:a:h}"
+#PROJECT_ROOT=$(realpath "$SCRIPT_PATH/../..")
+docker compose up -d && "${SCRIPT_PATH}/logs"
