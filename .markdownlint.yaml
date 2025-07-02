@@ -1,0 +1,36 @@
+# MarkdownLint Configuration
+
+default: true
+
+MD013:
+  line_length: 120
+  tables: false
+
+MD033:
+  allowed_elements:
+    - details
+    - summary
+    - a
+    - br
+    - p
+    - ul
+    - ol
+    - li
+    - h1
+    - h2
+    - h3
+    - h4
+    - h5
+    - h6
+    - table
+    - thead
+    - tbody
+    - tr
+    - th
+    - td
+
+MD041: false
+MD047: true
+
+MD049:
+  style: underscore
