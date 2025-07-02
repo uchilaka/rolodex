@@ -1,5 +1,26 @@
 # Lightweight CRM Implementation Plan for Donation Platform
 
+- [Lightweight CRM Implementation Plan for Donation Platform](#lightweight-crm-implementation-plan-for-donation-platform)
+  - [Overview](#overview)
+  - [Core Features](#core-features)
+  - [Technical Implementation](#technical-implementation)
+    - [Data Model](#data-model)
+    - [Contact Merging Logic](#contact-merging-logic)
+    - [Backend](#backend)
+      - [a. API Endpoints](#a-api-endpoints)
+      - [b. Services](#b-services)
+    - [Frontend](#frontend)
+      - [a. Pages](#a-pages)
+      - [b. Components](#b-components)
+    - [Data Flow](#data-flow)
+      - [a. Contact Creation/Update](#a-contact-creationupdate)
+      - [b. Donor Linking](#b-donor-linking)
+      - [c. Record Consolidation](#c-record-consolidation)
+  - [Security Considerations](#security-considerations)
+  - [Testing Strategy](#testing-strategy)
+  - [Deployment](#deployment)
+  - [Future Enhancements](#future-enhancements)
+
 ## Overview
 
 This document outlines the implementation plan for a lightweight CRM system to manage contact records for a donation platform.
@@ -18,77 +39,17 @@ The system will focus on maintaining accurate contact information and linking it
 - Each address is linked to a `GooglePlace` (external)
 - `Address` records are owned and maintained by the system and once created cannot be edited by the user
 
-### Modeling
+## Technical Implementation
 
-#### 1. Contact Management
+### Data Model
 
-- Contact `hireable`, `identifyable` & `reachable` (id, given_name, family_name, email, phone, created_at, updated_at)
-- Org `hireable`, `identifyable` & `reachable` (id, name, email, phone, created_at, updated_at)
-- ContactInfo (id, reachable_id,reachable_type, type [EmailAddress/PhoneNumber], value, is_primary, created_at, updated_at)
-- EmploymentRecord (id, hireable_id, hireable_type, employer_id, occupation, is_current, start_date, end_date)
-- Address (id, google_place_id, street_line_1, street_line_2, locale, region_id, postal_code)
-- ReachableAddress (id, reachable_id, reachable_type, address_id, is_primary, type [HomeAddress/WorkAddress/OtherAddress])
-- Regions (id, name, display_name, alpha2_code_iso3166, numeric_code_iso3166, created_at, updated_at)
+Review [the data model document](./02-modeling.md) for more details.
 
-#### 2. Donor Integration
-
-- Donor (id, external_id, created_at, updated_at)
-- Donation (id, donor_id, amount, currency, donation_date, campaign_id, payment_method, status)
-
-#### 3. Contact Record Consolidation
-
-- IdentitiesDonors (identity_id, identity_type, donor_id, is_primary, created_at, updated_at)
-
-### Model Scaffolding Order
-
-The following order should be followed when scaffolding the models to ensure all dependencies are satisfied:
-
-1. [x] **Regions**
-   - Independent model
-   - Required by Address model
-
-2. [ ] **Contact & Org** (can be created in parallel)
-   - Base models that implement `hireable` and `reachable` interfaces
-   - Core entities for the system
-
-3. [ ] **Address**
-   - Depends on Regions
-   - System-owned and immutable
-   - Contains `google_place_id`
-
-4. [ ] **ReachableAddress**
-   - Depends on both `Address` and `reachable` interface
-   - Handles the polymorphic association
-   - Manages address types (Home/Work/Other) and `is_primary`
-
-5. [ ] **ContactInfo**
-   - Depends on `reachable` interface (Contact/Org)
-   - Uses polymorphic association with `reachable_id` and `reachable_type`
-
-6. [ ] **EmploymentRecord**
-   - Depends on `hireable` interface
-   - Uses polymorphic association with `hireable_id` and `hireable_type`
-   - References `employer_id` (from Contact/Org)
-
-7. [ ] **Donor**
-   - Independent model
-   - No dependencies on other models
-
-8. [ ] **Donation**
-   - Depends on Donor
-   - References `donor_id`
-
-9. [ ] **IdentitiesDonors**
-   - Junction table between identities (Contact/Org) and Donors
-   - Should be created last as it depends on both identity and donor models
-
-#### Merging Logic
+### Contact Merging Logic
 
 - Identify potential duplicates based on name, email, phone
 - Manual review and merge process
 - History tracking of merged records
-
-## Technical Implementation
 
 ### Backend
 
@@ -124,7 +85,7 @@ The following order should be followed when scaffolding the models to ensure all
 - Merge suggestions panel
 - Quick edit forms
 
-## Data Flow
+### Data Flow
 
 #### a. Contact Creation/Update
 
